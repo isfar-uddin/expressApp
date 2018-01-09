@@ -7,5 +7,5 @@ app.get('/',function (req,res) {
 })
 
 app.get('/books',function(req,res){
-    res.json({books:["a","b"]})
+    res.json({books:["a","b","c"]})
 })
