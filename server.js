@@ -1,11 +1,18 @@
-var express=require("express")
-app =express()
-app.get('/',function (req,res) {
-    res.send("Hello World")
-}).listen(3000,function () {
-    console.log("Server running at port 3000")
+var express = require("express"),
+    bodyParser = require('body-parser'),
+    app = express();
+
+app.use(bodyParser.urlencoded());
+
+var names = []
+
+app.get('/', function (req, res) {
+    res.render('index.jade', {names: names})
 })
 
-app.get('/books',function(req,res){
-    res.json({books:["a","b","c"]})
+app.post('/', function (req, res) {
+    names.push(req.body.name)
+    res.redirect('/')
 })
+
+app.listen(3000)
